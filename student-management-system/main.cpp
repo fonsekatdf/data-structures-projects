@@ -29,6 +29,7 @@ public:
 
 class StudentList
 {
+    private:
     Student *head;
     Student *tail;
     int size;
