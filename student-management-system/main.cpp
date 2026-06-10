@@ -46,7 +46,7 @@ public:
     {
         Student *temp = new Student(studentId, studentName, studentGPA);
 
-        if(head == nullptr)
+        if (head == nullptr)
         {
             head = temp;
             tail = temp;
@@ -59,9 +59,36 @@ public:
         }
         size++;
     }
+
+    void viewStudents()
+    {
+        if (head == nullptr)
+        {
+            cout << "\nThe student list is empty.\n"
+                 << endl;
+            return;
+        }
+
+        cout << "\n=======================================" << endl;
+        cout << "       ENROLLED STUDENTS (" << size << ")" << endl;
+        cout << "=======================================" << endl;
+
+        Student *current = head;
+        while (current != nullptr)
+        {
+            cout << "ID   : " << current->id << endl
+                 << "Name : " << current->name << endl
+                 << "GPA  : " << current->GPA << endl;
+
+            current = current->next;
+
+            cout << "=======================================" << endl;
+        }
+    }
 };
 
 int main()
 {
+    
     return 0;
 }
