@@ -29,10 +29,36 @@ public:
 
 class StudentList
 {
-    private:
+private:
     Student *head;
     Student *tail;
     int size;
+
+public:
+    StudentList()
+    {
+        head = nullptr;
+        tail = nullptr;
+        size = 0;
+    }
+
+    void addStudent(int studentId, string studentName, double studentGPA)
+    {
+        Student *temp = new Student(studentId, studentName, studentGPA);
+
+        if(head == nullptr)
+        {
+            head = temp;
+            tail = temp;
+        }
+
+        else
+        {
+            tail->next = temp;
+            tail = temp;
+        }
+        size++;
+    }
 };
 
 int main()
