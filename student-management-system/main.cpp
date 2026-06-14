@@ -176,6 +176,34 @@ public:
 
         
     }
+
+    bool updateStudent(int studentId, string newName, double newGPA)
+    {
+        if(head == nullptr)
+        {
+            cout << "\nThe student list is empty.\n" << endl;
+            return false;
+        }
+
+        Student *current = head;
+
+        while(current != nullptr)
+        {
+            if(current->id == studentId)
+            {
+                current->name = newName;
+                current->GPA = newGPA;
+
+                cout << "\nStudent with ID " << studentId << " updated sucessfully.\n" << endl;
+                return true;
+            }
+
+            current = current->next;
+        }
+
+        cout << "\nStudent with ID " << studentId << " not found.\n" << endl;
+        return false;
+    }
 };
 
 int main()
@@ -186,16 +214,20 @@ int main()
     st.addStudent(3, "Charlie", 3.2);
     st.addStudent(4, "David", 3.9);
 
-    // st.viewStudents();
+    st.viewStudents();
+
+    st.updateStudent(2, "Bob Smith", 3.85);
+
+    st.viewStudents();
 
     // st.searchStudent(2);
     // st.searchStudent(1);
     // st.searchStudent(5);
 
-    st.deleteStudent(1);
-    st.deleteStudent(4);
-    st.deleteStudent(5);
+    // st.deleteStudent(1);
+    // st.deleteStudent(4);
+    // st.deleteStudent(5);
     
-    st.viewStudents();
+    
     return 0;
 }
