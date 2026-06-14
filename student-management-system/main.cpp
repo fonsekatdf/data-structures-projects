@@ -115,6 +115,67 @@ public:
         cout << "\nStudent with ID " << studentId << " not found.\n"
              << endl;
     }
+
+    void deleteStudent(int studentId)
+    {
+        // the list is empty
+        if (head == nullptr)
+        {
+            cout << "\nThe student list is empty.\n"
+                 << endl;
+            return;
+        }
+
+        // deleting the head node
+        if (head->id == studentId)
+        {
+            Student *temp = head;
+            head = head->next;
+
+            if (head == nullptr)
+            {
+                tail = nullptr;
+            }
+
+            delete temp;
+            size--;
+
+            cout << "\nStudent with ID " << studentId << " deleted sucessfully.\n"
+                 << endl;
+            return;
+        }
+
+        // deleting from the middle or end
+        Student *current = head;
+        Student *previous = nullptr;
+
+        while (current != nullptr && current->id != studentId)
+        {
+            previous = current;
+            current = current->next;
+        }
+
+        if (current != nullptr)
+        {
+            previous->next = current->next;
+
+            if (current == tail)
+            {
+                tail = previous;
+            }
+
+            delete current;
+            size--;
+            cout << "\nStudent with ID " << studentId << " deleted sucessfully.\n" << endl;
+        }
+
+        else
+        {
+            cout << "\nStudent with ID " << studentId << " not found.\n" << endl;
+        }
+
+        
+    }
 };
 
 int main()
@@ -125,10 +186,16 @@ int main()
     st.addStudent(3, "Charlie", 3.2);
     st.addStudent(4, "David", 3.9);
 
-    st.viewStudents();
+    // st.viewStudents();
 
-    st.searchStudent(2);
-    st.searchStudent(1);
-    st.searchStudent(5);
+    // st.searchStudent(2);
+    // st.searchStudent(1);
+    // st.searchStudent(5);
+
+    st.deleteStudent(1);
+    st.deleteStudent(4);
+    st.deleteStudent(5);
+    
+    st.viewStudents();
     return 0;
 }
