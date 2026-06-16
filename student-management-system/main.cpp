@@ -166,43 +166,90 @@ public:
 
             delete current;
             size--;
-            cout << "\nStudent with ID " << studentId << " deleted sucessfully.\n" << endl;
+            cout << "\nStudent with ID " << studentId << " deleted sucessfully.\n"
+                 << endl;
         }
 
         else
         {
-            cout << "\nStudent with ID " << studentId << " not found.\n" << endl;
+            cout << "\nStudent with ID " << studentId << " not found.\n"
+                 << endl;
         }
-
-        
     }
 
     bool updateStudent(int studentId, string newName, double newGPA)
     {
-        if(head == nullptr)
+        if (head == nullptr)
         {
-            cout << "\nThe student list is empty.\n" << endl;
+            cout << "\nThe student list is empty.\n"
+                 << endl;
             return false;
         }
 
         Student *current = head;
 
-        while(current != nullptr)
+        while (current != nullptr)
         {
-            if(current->id == studentId)
+            if (current->id == studentId)
             {
                 current->name = newName;
                 current->GPA = newGPA;
 
-                cout << "\nStudent with ID " << studentId << " updated sucessfully.\n" << endl;
+                cout << "\nStudent with ID " << studentId << " updated sucessfully.\n"
+                     << endl;
                 return true;
             }
 
             current = current->next;
         }
 
-        cout << "\nStudent with ID " << studentId << " not found.\n" << endl;
+        cout << "\nStudent with ID " << studentId << " not found.\n"
+             << endl;
         return false;
+    }
+
+    void sortById()
+    {
+        if (head == nullptr || head->next == nullptr)
+        {
+            cout << "\nThe student list is empty or has only one student.\n"
+                 << endl;
+            return;
+        }
+
+        bool swapped;
+        Student *current;
+
+        do
+        {
+            swapped = false;
+            current = head;
+
+            while (current->next != nullptr)
+            {
+                if (current->id > current->next->id)
+                {
+                    int tempId = current->id;
+                    string tempName = current->name;
+                    double tempGPA = current->GPA;
+
+                    current->id = current->next->id;
+                    current->name = current->next->name;
+                    current->GPA = current->next->GPA;
+
+                    current->next->id = tempId;
+                    current->next->name = tempName;
+                    current->next->GPA = tempGPA;
+
+                    swapped = true;
+                }
+
+                current = current->next;
+            }
+        } while (swapped);
+
+        cout << "\nStudent list has been sorted by ID successfully.\n"
+             << endl;
     }
 };
 
@@ -227,7 +274,6 @@ int main()
     // st.deleteStudent(1);
     // st.deleteStudent(4);
     // st.deleteStudent(5);
-    
-    
+
     return 0;
 }
