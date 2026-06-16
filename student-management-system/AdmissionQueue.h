@@ -37,4 +37,26 @@ public:
         queueSize++;
         cout << "\nAdded to waitlist: " << studentName << " (Id: " << studentId << ")" << endl;
     }
+
+    Student *dequeue()
+    {
+        if (front == nullptr)
+        {
+            cout << "\nThe waitlist is empty.\n"
+                 << endl;
+            return nullptr;
+        }
+
+        Student *temp = front;
+        front = front->next;
+
+        if (front == nullptr)
+        {
+            rear = nullptr;
+        }
+
+        temp->next = nullptr;
+        queueSize--;
+        return temp;
+    }
 };
