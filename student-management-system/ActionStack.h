@@ -43,5 +43,22 @@ public:
         newAction->next = top;
         top = newAction;
         stackSize++;
+    }
+
+    ActionNode *pop()
+    {
+        if (top == nullptr)
+        {
+            cout << "\nNo actions to undo! History is empty.\n"
+                 << endl;
+            return nullptr;
         }
+
+        ActionNode *temp = top;
+        top = top->next;
+        temp->next = nullptr;
+        stackSize--;
+
+        return temp;
+    }
 };
