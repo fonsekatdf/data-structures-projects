@@ -61,4 +61,30 @@ public:
 
         return temp;
     }
+
+    void displayHistory()
+    {
+        if (top == nullptr)
+        {
+            cout << "\nAction history is empty.\n"
+                 << endl;
+            return;
+        }
+
+        cout << "\n--- Recent Actions ---\n"
+             << endl;
+
+        ActionNode *current = top;
+
+        int step = 1;
+        while (current != nullptr)
+        {
+            cout << step << ". [" << current->operation << "] "
+                 << current->name << " (ID: " << current->id << ")" << endl;
+            current = current->next;
+            step++;
+        }
+
+        cout << "--------------------------\n" << endl;
+    }
 };
